@@ -845,9 +845,108 @@ Element：是饿了么团队研发的，一套为开发者、设计师和产品�
 
 ### 1、maven-SpringBootWeb入门
 
+#### 1.1概述
+
+##### 1.1.1、介绍
+
+Maven是apache旗下的一个开源项目，是一款用于**管理和构建java项目的工具**，基于项目对象模型(POM)的概念，通过一小段描述信息来管理项目的构建。官网：http://maven.apache.org/
+
+> Apache 软件基金会，成立于1999年7月，是目前世界上最大的最受欢迎的开源软件基金会，也是一个专门为支持开源项目而生的非盈利性组织。开源项目：[https://www.apache.org/index.html#projects-list](https://www.apache.org/index.html)
+
+maven作用：
+
+- 依赖管理---方便快捷的管理项目依赖的资源(jar包)，避免版本冲突问题
+- 统一项目结构---![image-20231016133307767](https://gitee.com/coi4/test/raw/master/img/image-20231016133307767.png)
+- 项目构建---标准跨平台（Linux、Windows、MacOS）的自动化项目构建方式![image-20231016133356333](https://gitee.com/coi4/test/raw/master/img/image-20231016133356333.png)
+
+![image-20231016133824370](https://gitee.com/coi4/test/raw/master/img/image-20231016133824370.png)
+
+![image-20231016133908793](https://gitee.com/coi4/test/raw/master/img/image-20231016133908793.png)
+
+> 仓库：用于存储资源，管理各种jar包。
+>
+> - 本地仓库：自己计算机上的一个目录
+> - 中央仓库：由Maven团队维护的全球唯一的。 仓库地址：https://repo1.maven.org/maven2/
+> - 远程仓库(私服)：一般由公司团队搭建的私有仓库。
+
+##### 1.1.2、安装
+
+![image-20231016134249776](https://gitee.com/coi4/test/raw/master/img/image-20231016134249776.png)
+
+![image-20231016134315972](https://gitee.com/coi4/test/raw/master/img/image-20231016134315972.png)
+
+#### 1.2、IDEA集成maven
+
+##### 1.2.1、配置maven环境
+
+当前工程：
+
+![image-20231016134626520](https://gitee.com/coi4/test/raw/master/img/image-20231016134626520.png)
+
+全局：
+
+![image-20231016134719577](https://gitee.com/coi4/test/raw/master/img/image-20231016134719577.png)
+
+##### 1.2.2、创建项目
+
+1. 创建模块，选择Maven，点击Next!![image-20231016163335573](https://gitee.com/coi4/test/raw/master/img/image-20231016163335573.png)
+
+2. 填写模块名称，坐标信息，点击finish，创建完成![image-20231016163351114](https://gitee.com/coi4/test/raw/master/img/image-20231016163351114.png)
+
+3. 编写 HelloWorld，并运行
+
+   > 坐标：
+   >
+   > - Maven 中的坐标是资源的唯一标识，通过该坐标可以唯一定位资源位置。
+   > - 使用坐标来定义项目或引入项目中需要的依赖。
+   > - 主要组成：
+   >   - groupId：定义当前Maven项目隶属组织名称（通常是域名反写，例如：com.itheima）
+   >   - artifactId：定义当前Maven项目名称（通常是模块名称，例如 order-service、goods-service）
+   >   - version：定义当前项目版本号
+   >
+   > ![image-20231016163635206](https://gitee.com/coi4/test/raw/master/img/image-20231016163635206.png)
+
+##### 1.2.3、导入项目
+
+* 方式一：![image-20231016163919469](https://gitee.com/coi4/test/raw/master/img/image-20231016163919469.png)
+
+![image-20231016163929467](C:/Users/4u/AppData/Roaming/Typora/typora-user-images/image-20231016163929467.png)
+
+![image-20231016163941044](https://gitee.com/coi4/test/raw/master/img/image-20231016163941044.png)
+
+- 方式二：![image-20231016164016959](https://gitee.com/coi4/test/raw/master/img/image-20231016164016959.png)
+
+![image-20231016164029416](https://gitee.com/coi4/test/raw/master/img/image-20231016164029416.png)
+
+![](https://gitee.com/coi4/test/raw/master/img/image-20231016164029416.png)
+
+![image-20231016164100156](https://gitee.com/coi4/test/raw/master/img/image-20231016164100156.png)
+
+#### 1.3、依赖管理
+
+依赖：指当前项目运行所需要的jar包，一个项目中可以引入多个依赖。
+
+##### 1.3.1、依赖配置
+
+1. 在 pom.xml 中编写 <dependencies> 标签
+
+2. 在 <dependencies> 标签中 使用 <dependency> 引入坐标
+
+3. 定义坐标的 groupId，artifactId，version
+
+4. 点击刷新按钮，引入最新加入的坐标
+
+   ![image-20231016164522330](https://gitee.com/coi4/test/raw/master/img/image-20231016164522330.png)
+
+##### 1.3.2、依赖传递
+
+##### 1.3.3、依赖范围
+
+##### 1.3.4、生命周期
+
 ### 2、MySQL
 
-### 3、Mybatis
+### 3、Mybati
 
 ### 4、SpringBootweb
 
