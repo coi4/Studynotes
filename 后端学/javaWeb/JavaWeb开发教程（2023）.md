@@ -1859,7 +1859,7 @@ spring-boot-starter-xxx这类的依赖，都为起步依赖。
 
 ![img](https://gitee.com/coi4/test/raw/master/img/8A543571889648CD86BBB1F84B67A817.png)
 
-简单参数：在向服务器发起请求时，向服务器传递的是一些普通的请求数据。
+简单参数：在向服务器发起请求时，向服务器传递的是一些普通的请求数据（url地址传参，地址参数名与形参变量名相同，定义形参即可接收参数）。
 
 - 原始方式获取请求参数（仅做了解）：
 
@@ -1913,14 +1913,14 @@ spring-boot-starter-xxx这类的依赖，都为起步依赖。
 
 实体参数：
 
-- 简单实体对象：请求参数名与形参对象属性名相同，定义POJO接收即可
-- 复杂实体对象：请求参数名与形参对象属性名相同，按照对象层次结构关系即可接收嵌套POJO属性参数。
+- 简单实体对象（（POJO数据类型））：请求参数名与形参对象属性名相同，定义POJO接收即可；
+- 复杂实体对象（**嵌套**POJO类型参数)：（POJO对象中嵌套了其他的POJO类![image-20231104212444248](https://gitee.com/coi4/test/raw/master/img/image-20231104212444248.png)）请求参数名与形参对象属性名相同，按照对象层次结构关系即可接收嵌套POJO属性参数。![image-20231104212539250](https://gitee.com/coi4/test/raw/master/img/image-20231104212539250.png)
 
 多个值提交：
 
 数组集合参数：
 
-- 数组参数：请求参数名与形参数组名称相同且请求参数为多个，定义数组类型形参即可接收参数
+- 数组参数：请求参数名与形参数组名称相同且请求参数为多个，定义数组类型形参即可接收参数（参数名一致才能封装到一个数组中）
 
   - ```Java
     @RestController
@@ -1933,6 +1933,8 @@ spring-boot-starter-xxx这类的依赖，都为起步依赖。
         }
     }
     ```
+
+  - SpringMVC![image-20231104212736955](https://gitee.com/coi4/test/raw/master/img/image-20231104212736955.png)
 
   - postman测试：可xxxxxxxxxxxxx?hobby=game,java
 
@@ -1949,6 +1951,8 @@ spring-boot-starter-xxx这类的依赖，都为起步依赖。
         }
     }
     ```
+    
+  - SpringMVC![image-20231104212857113](https://gitee.com/coi4/test/raw/master/img/image-20231104212857113.png)
 
 日期参数：
 
@@ -3927,7 +3931,7 @@ AOP进阶
                   //1. 删除部门
                   deptMapper.delete(id);
               }
-          
+            
           ```
 
      3. 切面类：
