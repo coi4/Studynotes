@@ -76,33 +76,120 @@ Spring系统架构：![image-20231105103000452](https://gitee.com/coi4/test/raw/
 
 Spring到底是如何来实现IOC和DI：先分析思路然后再代码实现
 
+IOC入门案例
+
+思路：
+
+- 管什么：主要管理项目中所使用到的类对象，比如(Service和Dao)
+- 怎么将被管理对象告知IOC容器：使用配置文件
+- 如何获取IOC容器：接口
+- 如何获取bean：调用接口中的方法
+- 使用Spring导入哪些坐标：在pom.xml中添加相应的依赖
+
+实现：
+
+- 创建maven项目
+
+- 添加Spring依赖的jar包：
+
+  ```
+  <dependencies>
+  <dependency>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-context</artifactId>
+  <version>5.2.10.RELEASE</version>
+  </dependency>
+  <dependency>
+  <groupId>junit</groupId>
+  <artifactId>junit</artifactId>
+  <version>4.12</version>
+  <scope>test</scope>
+  </dependency>
+  </dependencies>
+  ```
+
+- 添加需要的类
+
+- 添加配置文件：resources下添加spring配置文件applicationContext.xml，并完成bean的配置![image-20231106114939626](https://gitee.com/coi4/test/raw/master/img/image-20231106114939626.png)
+
+- 完成bean的配置：**bean****定义时****id****属性在同一个上下文中****(****配置文件****)****不能重复**
+
+  ```
+  beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd">
+  <!--bean标签标示配置bean
+  id属性标示给bean起名字
+  class属性表示给bean定义类型
+  -->
+  <bean id="bookDao" class="com.itheima.dao.impl.BookDaoImpl"/>
+  <bean id="bookService" class="com.itheima.service.impl.BookServiceImpl"/>
+  </beans>
+  ```
+
+- 获取IOC容器：使用Spring提供的接口完成IOC容器的创建，创建App类，编写main方法![image-20231106115047080](https://gitee.com/coi4/test/raw/master/img/image-20231106115047080.png)
+
+- **从容器中获取对象进行方法调用**![image-20231106115106439](https://gitee.com/coi4/test/raw/master/img/image-20231106115106439.png)
+
+DI入门案例：
+
+思路：
+
+- DI的入门案例要依赖于前面IOC的入门案例
+- Service中使用new形式创建的Dao对象如何保留：删除掉，最终要使用IOC容器中的bean对象
+- Dao对象如何进入IOC容器：在Service中提供方法，让Spring的IOC容器可以通过该方法传入bean对象
+- Service与Dao间的关系如何描述：使用配置文件
+
+实现：
+
+- 去除代码中的new：在BookServiceImpl类中，删除业务层中使用new的方式创建的dao对象
+- 为属性提供setter方法：在BookServiceImpl类中,为BookDao提供setter方法
+- 修改配置完成注入：在配置文件中添加依赖注入的配置；**配置中的两个****bookDao****的含义是不一样的**![image-20231106115651522](https://gitee.com/coi4/test/raw/master/img/image-20231106115651522.png)
+  - name="bookDao"中bookDao的作用是让Spring的IOC容器在获取到名称后，将首字母大写，前面加set找对应的setBookDao()方法进行对象注入
+  - ref="bookDao"中bookDao的作用是让Spring能在IOC容器中找到id为bookDao的Bean对象给bookService进行注入
+
 ### 3、IOC相关内容
 
-### 4、DI相关内容
+bean基础配置：
 
-### 5、IOC/DI配置管理第三方
+- bean基础配置**(id****与****class)：
 
-### 6、核心容器
+  ![image-20231106115935425](https://gitee.com/coi4/test/raw/master/img/image-20231106115935425.png)
 
-### 7、IOC/DI注解开发
+  ```
+  <bean id="" class=""/>
+  ```
 
-### 8、IOC/DI注解开发管理第三方bean
+- bean的别名配置
 
-### 9、Spring整合
+-  bean的作用范围配置(重点)
+
+4、DI相关 内容
+
+5、IOC/DI配置管理第三方
+
+6、核心容器
+
+7、IOC/DI注解开发
+
+8、IOC/DI注解开发管理第三方bean
+
+9、Spring整合
 
  Spring 整合 junit：![image-20231104093404574](https://gitee.com/coi4/test/raw/master/img/image-20231104093404574.png)
 
  @RunWith 注解指定运行器，使用 @ContextConfiguration 注解来指定配置类或者配置文件
 
-### 10、AOP简介
+10、AOP简介
 
-### 11、AOP入门案例
+11、AOP入门案例
 
-### 12、AOP工作流程
+12、AOP工作流程
 
-### 13、AOP配置管理
+13、AOP配置管理
 
-### 14、AOP事务管理
+14、AOP事务管理
 
 ## 二、SpringMVC
 

@@ -2417,35 +2417,37 @@ SQL：一门操作关系型数据库的编程语言，定义操作所有关系�
 
 ###### 3.1.2.1、数据库
 
-DDL 英文全称是 Data Definition Language，数据定义语言，用来定义数据库对象(数据库、表)。
+DDL 英文全称是 Data Definition Language，数据定义语言，用来**定义数据库对象(数据库、表**)。
 
 查询：
 
 - 查询所有数据库：show databases;
 - 查询**当前**数据库：select database();
 
-使用：
+使用（切换）：
 
 - 使用数据库：use 数据库名 ;
 - 我们要操作某一个数据库，必须要切换到对应的数据库中。
 
 创建：
 
-- 创建数据库：create database [ if not exists ]  数据库名 ;
+- 创建数据库：create database [ if not exists ]  数据库名  [ default charset 字符集 ] [ collate 排序规则 ] ;在同一个数据库服务器中，不能创建两个名称相同的数据库，否则将会报错。
 
 删除：
 
-- 删除数据库：drop database [ if exists ]  数据库名 ;
+- 删除数据库：drop database [ if exists ]  数据库名 ;删除一个不存在的数据库，将会报错
 
 上述语法中的database，也可以替换成 schema。如：create schema db01;
 
-命令行操作不方便：
+命令行操作不方便、影响开发效率 ：
 
-DataGrip是JetBrains旗下的一款数据库管理工具，是管理和开发MySQL、Oracle、PostgreSQL的理想解决方案。
+![image-20231106082636437](https://gitee.com/coi4/test/raw/master/img/image-20231106082636437.png)
+
+DataGrip是JetBrains旗下的一款数据库管理工具，是管理和开发MySQL、Oracle、PostgreSQL的理想解决方案（图形化界面工具）。
 
 官网：[ https://www.jetbrains.com/zh-cn/datagrip/](https://www.jetbrains.com/zh-cn/datagrip/)
 
-安装： 参考资料中提供的《DataGrip安装手册》
+安装使用： 看MySQL基础讲义
 
 IDEAL也可！
 
@@ -2501,6 +2503,15 @@ id有重复值：
   | 默认约束 | 保存数据时，如果未指定该字段值，则采用默认值     | default     |
   | 外键约束 | 让两张表的数据建立连接，保证数据的一致性和完整性 | foreign key |
 
+```
+为emp表的dept_id字段添加外键约束,关联dept表的主键id。
+//ALTER TABLE 表名 ADD CONSTRAINT 外键名称 FOREIGN KEY (外键字段名)
+REFERENCES 主表 (主表列名) ;
+
+alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references
+dept(id);
+```
+
 数据类型
 
 - MySQL中的数据类型有很多，主要分为三类：数值类型、字符串类型、日期时间类型。
@@ -2517,16 +2528,17 @@ id有重复值：
   	username varchar(50)
   	
   	手机号 phone ---固定长度为11
-  	phone char(11)
+  	phone char(11)//char 与 varchar 都可以描述字符串，char是定长字符串，指定长度多长，就占用多少个字符，和字段值的长度无关 。而varchar是变长字符串，指定的长度为最大占用长度 。相对来说，char的性
+  能会更高些。
   示例: 
   	生日字段  birthday ---生日只需要年月日  
   	birthday date
   	
   	创建时间 createtime --- 需要精确到时分秒
   	createtime  datetime
-  ```
-
-- 参照 [《MySQL](../资料/04. MySQL数据类型/MySQL数据类型.xlsx)[数据类型](../资料/04. MySQL数据类型/MySQL数据类型.xlsx)[》](../资料/04. MySQL数据类型/MySQL数据类型.xlsx)
+```
+  
+- 具体可上网查
 
 >  根据页面原型/需求创建表(设计合理的数据类型、长度、约束)
 >
@@ -2544,24 +2556,39 @@ id有重复值：
 3. 再增加表设计所需要的业务基础字段(id主键、插入时间、修改时间)
 ```
 
+SQL语句编写完毕之后，就可以在MySQL的命令行中执行SQL，然后也可以通过 desc 指令查询表结构
+
 查询：
 
 - 查询当前数据库所有表：show tables;
-- 查询表结构：desc 表名;
+- 查询指定表结构：desc 表名;
 - 查询建表语句：show create table 表名;![img](https://gitee.com/coi4/test/raw/master/img/A84FB6E50E871D12AA20D26E868E09BC.png)
 
 修改：
 
 - 添加字段：alter table 表名 add 字段名 类型(长度) [comment 注释] [约束];
+
+  ```
+  ALTER TABLE emp ADD nickname varchar(20) COMMENT '昵称';
+  ```
+
 - 修改字段类型：alter table 表名 modify 字段名 新数据类型(长度);
+
 - 修改字段名和字段类型：alter table 表名 change 旧字段名 新字段名 类型 (长度) [comment 注释] [约束];
-- 删除字段：alter table 表名 drop column 字段名;
-- 修改表名： rename table 表名 to 新表名;
+
+  ```
+  ALTER TABLE emp CHANGE nickname username varchar(30) COMMENT '昵称';
+  ```
+
+- 删除字段：alter table 表名 drop  字段名;
+
+- 修改表名： rename table 表名 to 新表名;ALTER TABLE 表名 RENAME TO 新表名; 
 
 删除：
 
 - 删除表：drop table [ if exists ] 表名;
 - ![image-20231018001703830](https://gitee.com/coi4/test/raw/master/img/image-20231018001703830.png)
+-  删除指定表, 并重新创建表：TRUNCATE TABLE 表名; 
 - 在删除表时，表中的全部数据也会被删除。
 
 ##### 3.1.3、多表设计
@@ -2679,15 +2706,18 @@ create table setmeal_dish
 
 ##### 3.2.1、操作-DML
 
-DML英文全称是Data Manipulation Language(数据操作语言)，用来对数据库中表的数据记录进行增、删、改操作。
+DML英文全称是Data Manipulation Language(数据操作语言)，用来对数据库中**表的数据**记录进行增、删、改操作。
 
 - 添加数据（INSERT）
 - 修改数据（UPDATE）
 - 删除数据（DELETE）
 
-insert语法：
+insert语法（**添加数据**）：
 
 - 指定字段添加数据：insert into 表名 (字段名1, 字段名2) values (值1, 值2);
+  - 插入数据完成之后，我们有两种方式，查询数据库的数据：
+    - 在左侧的表名上双击，就可以查看这张表的数据。![image-20231106083124041](https://gitee.com/coi4/test/raw/master/img/image-20231106083124041.png)
+    - SQL语句：select * from employee; 
 - 全部字段添加数据：insert into 表名 values (值1, 值2, ...);
 - 批量添加数据（指定字段）：insert into 表名 (字段名1, 字段名2) values (值1, 值2), (值1, 值2);
 - 批量添加数据（全部字段）：insert into 表名 values (值1, 值2, ...), (值1, 值2, ...);
@@ -2698,10 +2728,16 @@ insert语法：
 2. 字符串和日期型数据应该包含在引号中。
 3. 插入的数据大小，应该在字段的规定范围内。
 
-UPDATE语法：
+UPDATE语法（**修改数据**）：
 
 - 修改数据：update 表名 set 字段名1 = 值1 , 字段名2 = 值2 , .... [ where 条件 ] ;
+
+  ```
+  update employee set name = 'itheima' where id = 1;
+  ```
+
 - 修改语句的条件可以有，也可以没有，如果没有条件，则会修改整张表的所有数据。
+
 - 在修改数据时，一般需要同时修改公共字段update_time，将其修改为当前操作时间。
 
 DELETE语法：
@@ -2724,6 +2760,8 @@ DQL英文全称是Data Query Language(数据查询语言)，用来查询数据�
 
 ![image-20231018100823359](https://gitee.com/coi4/test/raw/master/img/image-20231018100823359.png)
 
+![image-20231106084841058](https://gitee.com/coi4/test/raw/master/img/image-20231106084841058.png)
+
 基本查询：
 
 - 查询多个字段：select 字段1, 字段2, 字段3 from  表名;
@@ -2742,13 +2780,13 @@ DQL英文全称是Data Query Language(数据查询语言)，用来查询数据�
       select distinct job from tb_emp;
       ```
 
-      
-
 - *号代表查询所有字段，在实际开发中尽量少用（不直观、影响效率）。
 
 条件查询（where）：
 
 - 条件查询：select 字段列表 from  表名  where  条件列表 ;
+
+- ![image-20231106083928420](https://gitee.com/coi4/test/raw/master/img/image-20231106083928420.png)
 
 - | **比较运算符**       | **功能**                                 |
   | -------------------- | ---------------------------------------- |
@@ -2787,6 +2825,9 @@ DQL英文全称是Data Query Language(数据查询语言)，用来查询数据�
     where entrydate <= '2015-01-01'   -- 分组前条件
     group by job                      -- 按照job字段分组
     having count(*) >= 2;             -- 分组后条件
+    
+    select workaddress, count(*) address_count from emp where age < 45 group by
+    workaddress having address_count >= 3;
     ```
 
 - where与having的区别（面试题）
@@ -2798,23 +2839,31 @@ DQL英文全称是Data Query Language(数据查询语言)，用来查询数据�
 
 - 执行顺序: where > 聚合函数 > having 。
 
-- 聚合函数
+- 支持多字段分组, 具体语法为 : group by columnA,columnB
 
-  - 将一列数据作为一个整体，进行**纵向**计算。
+聚合函数
 
-  - 语法：select 聚合函数(字段列表) from  表名 ;
+- 将一列数据作为一个整体，进行**纵向**计算。
 
-  - null值不参与所有聚合函数运算。
+- 语法：select 聚合函数(字段列表) from  表名 ;对于count聚合函数，统计符合条件的总记录数，还可以通过 count(数字/字符串)的形式进行统计查询
 
-  - 统计数量可以使用：count(*)  count(字段)  count(常量)，推荐使用count(*)。
+- ```
+  select count(*) from emp; -- 统计的是总记录数
+  select count(idcard) from emp; -- 统计的是idcard字段不为null的记录数
+  select count(1) from emp;
+  ```
 
-  - | **函数** | **功能** |
-    | -------- | -------- |
-    | count    | 统计数量 |
-    | max      | 最大值   |
-    | min      | 最小值   |
-    | avg      | 平均值   |
-    | sum      | 求和     |
+- null值不参与所有聚合函数运算。
+
+- 统计数量可以使用：count(*)  count(字段)  count(常量)，推荐使用count(*)。
+
+- | **函数** | **功能** |
+  | -------- | -------- |
+  | count    | 统计数量 |
+  | max      | 最大值   |
+  | min      | 最小值   |
+  | avg      | 平均值   |
+  | sum      | 求和     |
 
 排序查询（order by）：
 

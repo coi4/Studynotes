@@ -1,5 +1,5 @@
 ---
-typora-copy-images-to: upload
+cotypora-copy-images-to: upload
 ---
 
 # git教程
