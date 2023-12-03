@@ -138,7 +138,7 @@ cotypora-copy-images-to: upload
    export LC_ALL="zh_CN.UTF-8"
    ```
 
-##### 2.2 获取本地仓库
+##### *2.2 获取本地仓库
 
 要对代码进行版本控制，首先需要获得本地仓库
 
@@ -151,7 +151,7 @@ cotypora-copy-images-to: upload
 
  ![image-20231009173651168](https://gitee.com/coi4/test/raw/master/img/image-20231009173651168.png)
 
-> * git add：1.4中有备注（工作区--> 暂存区）
+> * git add .：1.4中有备注（工作区--> 暂存区）
 >
 > * git commit -m""： 1.4中有备注（暂存区 --> 本地仓库）
 >
@@ -250,7 +250,7 @@ cotypora-copy-images-to: upload
    - 验证是否配置成功
      - ssh -T git@gitee.com
 
-##### 4.2 、操作远程仓库
+##### *4.2 、操作远程仓库
 
 > * git remote add origin 仓库路径：**添加**远程仓库，先初始化本地库，然后与已创建的远程库进行对接
 >

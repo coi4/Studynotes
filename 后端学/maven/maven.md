@@ -8,11 +8,11 @@
 
 ![image-20231025103342679](https://gitee.com/coi4/test/raw/master/img/image-20231025103342679.png)
 
-> 项目构建：提供标准的、跨平台的自动化项目构建方式
+> **项目构建**：提供标准的、跨平台的自动化项目构建方式
 >
-> 依赖管理：方便快捷的管理项目依赖的资源，避免资源间版本冲突问题
+> **依赖管理**：方便快捷的管理项目依赖的资源，避免资源间版本冲突问题
 >
-> 统一开发结构：提供标准的、统一的项目结构
+> **统一开发结构**：提供标准的、统一的项目结构
 
 ### 2、下载与安装
 
@@ -63,7 +63,7 @@
 本地仓库配置（资源下载到的地方）：
 
 - Maven启动后会自动保存下载的资源到本地仓库
-  - 默认位置：当前目录位置为登录用户名所在目录下的.m2文件夹中。可通过替换`<localRepository>`标签中的地址，重新自定义本地仓库位置。
+  - 默认位置：当前目录位置为登录用户名所在目录下的.m2文件夹中。conf文件夹下settings.xml文件，通过替换`<localRepository>`标签中的地址，重新自定义本地仓库位置。
   
     ```
     <localRepository>$(user.home)/.m2/repository</localRepository>
@@ -196,11 +196,28 @@ setting文件的区别：
 ##### 4.2.1、配置maven
 
 - 存在兼容性问题，避免冲突，使用3.6.1版本
-- ![image-20231025115324785](https://gitee.com/coi4/test/raw/master/img/image-20231025115324785.png)
+- all settings![image-20231121223548099](https://gitee.com/coi4/test/raw/master/img/image-20231121223548099.png)
+- ![在这里插入图片描述](https://gitee.com/coi4/test/raw/master/img/20210225171423540.jpg)
 
 ##### 4.2.2、手工创建Java项目
 
 - ![image-20231025115430380](https://gitee.com/coi4/test/raw/master/img/image-20231025115430380.png)
+
+  ![在这里插入图片描述](https://gitee.com/coi4/test/raw/master/img/20210225172400702.jpg)
+
+  ![在这里插入图片描述](https://gitee.com/coi4/test/raw/master/img/20210225172512703.jpg)
+
+  > src/main/java  —— 存放项目的.java 文件 
+  > src/main/resources —— 存放项目资源文件，如数据库的配置文件 
+  > src/test/java —— 存放所有单元测试.java 文件，如 JUnit 测试类 
+  > target —— 项目输出位置，编译后的class 文件会输出到此目录 
+  > pom.xml ——maven 项目核心配置文件 
+
+- 只是普通Java项目，不是web项目
+
+  - 在main目录下创建一个webapp文件夹
+- 选择当前工程（项目名，如hello_maven）![在这里插入图片描述](https://gitee.com/coi4/test/raw/master/img/20210225172724469.jpg)
+  - 修改路径信息(Structrue——Modules——Web）（arctifacts不为空）![在这里插入图片描述](https://gitee.com/coi4/test/raw/master/img/20210225172912100.jpg)
 
 - idea中的构建命令执行，作用同mvn
 
@@ -218,7 +235,7 @@ setting文件的区别：
 
 ##### 4.2.4、原型创建web项目
 
-- ![image-20231025115548890](https://gitee.com/coi4/test/raw/master/img/image-20231025115548890.png)
+- ![img](https://gitee.com/coi4/test/raw/master/img/20180513231612737)
 
 ##### 4.2.5、插件
 
@@ -226,9 +243,26 @@ setting文件的区别：
 
 - Tomcat7安装与运行
   
+  - ![img](https://gitee.com/coi4/test/raw/master/img/20180514000006947)
+  
+    ![img](https://gitee.com/coi4/test/raw/master/img/20180514000438394)
+  
+    ![img](https://gitee.com/coi4/test/raw/master/img/20180514000754548)
+  
+    ![img](https://gitee.com/coi4/test/raw/master/img/201805141059394)
+  
+    ![img](https://gitee.com/coi4/test/raw/master/img/20180514110444440)
+  
   - ![image-20231025115725677](https://gitee.com/coi4/test/raw/master/img/image-20231025115725677.png)
   
   - 添加之后可以看到，web项目中已经有了tomcat插件；双击可启动服务器![img](https://gitee.com/coi4/test/raw/master/img/5ed1f217f0844bdaa0249b451d87d220.png)
+  
+  - 端口被占用：
+  
+    - 调出系统cmd窗口
+    - 通过netstat -ano|findstr 1099查询是哪个pid占用了端口
+    - 通过taskkill /f /t /im 13120直接结束掉占用端口的进程
+    - ![img](https://gitee.com/coi4/test/raw/master/img/20180514002611624)
 
 ### 5、依赖管理（重）
 
@@ -294,6 +328,14 @@ Maven对项目构建的生命周期划分为3个阶段。
   - ![img](https://gitee.com/coi4/test/raw/master/img/f49e151e59724ec3afab38aa50545878.png)
 
 #### 6.2、插件
+
+- 清理clean：将以前编译得到的旧文件class字节码文件删除
+- 编译compile：将java源程序编译成class字节码文件
+- 测试test：自动测试，自动调用junit程序
+- 报告report：测试程序执行的结果
+- 打包package：动态Web工程打War包，java工程打jar包
+- 安装install：Maven特定的概念-----将打包得到的文件复制到“仓库”中的指定位置
+- 部署deploy：将动态Web工程生成的war包复制到Servlet容器下，使其可以运行
 
 插件与生命周期内的阶段绑定，在执行到对应生命周期时执行对应的插件功能。
 
@@ -751,3 +793,11 @@ mvn 指令 –P 环境定义id
 
 - 发布资源到私服命令
   mvn deploy
+
+## 三、总结
+
+下载——仓库配置
+
+idea创建项目（配置maven，Java工程，web工程，插件设置）
+
+配置依赖
