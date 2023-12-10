@@ -2413,29 +2413,30 @@ SQL：一门操作关系型数据库的编程语言，定义操作所有关系�
 
 ![image-20231020004518796](https://gitee.com/coi4/test/raw/master/img/image-20231020004518796.png)
 
-##### 3.1.2、数据库设计-DDL
+##### 3.1.2、*数据库设计-DDL
 
 ###### 3.1.2.1、数据库
 
 DDL 英文全称是 Data Definition Language，数据定义语言，用来**定义数据库对象(数据库、表**)。
 
-查询：
-
-- 查询所有数据库：show databases;
-- 查询**当前**数据库：select database();
-
-使用（切换）：
-
-- 使用数据库：use 数据库名 ;
-- 我们要操作某一个数据库，必须要切换到对应的数据库中。
-
-创建：
-
-- 创建数据库：create database [ if not exists ]  数据库名  [ default charset 字符集 ] [ collate 排序规则 ] ;在同一个数据库服务器中，不能创建两个名称相同的数据库，否则将会报错。
-
-删除：
-
-- 删除数据库：drop database [ if exists ]  数据库名 ;删除一个不存在的数据库，将会报错
+> 查询：
+>
+> - 查询所有数据库：show databases;
+> - 查询**当前**数据库：select database();
+>
+> 使用（切换）：
+>
+> - 使用数据库：use 数据库名 ;
+> - 我们要操作某一个数据库，必须要切换到对应的数据库中。
+>
+> 创建：
+>
+> - 创建数据库：create database [ if not exists ]  数据库名  [ default charset 字符集 ] [ collate 排序规则 ] ;在**同一个数据库服务器中，不能创建两个名称相同的数据库，否则将会报错。**
+>
+> 删除：
+>
+> - 删除数据库：drop database [ if exists ]  数据库名 ;删除一个不存在的数据库，将会报错
+>
 
 上述语法中的database，也可以替换成 schema。如：create schema db01;
 
@@ -2459,19 +2460,20 @@ IDEAL也可！
 
 ###### 3.1.2.2、表（创建、查询、修改、删除）
 
-创建：
-
-```
-create table 表名(
-
- 字段1 字段类型 [ 约束 ] [ comment 字段1注释 ] ,
-
- ......
-
- 字段n 字段类型 [ 约束 ]  [ comment 字段n注释 ] 
-
-) [ comment 表注释 ] ;
-```
+> 创建：
+>
+> ```
+> create table 表名(
+> 
+>  字段1 字段类型 [ 约束 ] [ comment 字段1注释 ] ,
+> 
+>  ......
+> 
+>  字段n 字段类型 [ 约束 ]  [ comment 字段n注释 ] 
+> 
+> ) [ comment 表注释 ] ;
+> ```
+>
 
 案例：
 
@@ -2536,8 +2538,8 @@ dept(id);
   	
   	创建时间 createtime --- 需要精确到时分秒
   	createtime  datetime
-```
-  
+  ```
+
 - 具体可上网查
 
 >  根据页面原型/需求创建表(设计合理的数据类型、长度、约束)
@@ -2546,7 +2548,6 @@ dept(id);
 >
 > create_time：记录的是当前这条数据插入的时间。 update_time：记录当前这条数据最后更新的时间。
 
-```
 设计一张表，基本的流程如下：
 
 1. 阅读页面原型及需求文档
@@ -2554,7 +2555,7 @@ dept(id);
 2. 基于页面原则和需求文档，确定原型字段(类型、长度限制、约束)
 
 3. 再增加表设计所需要的业务基础字段(id主键、插入时间、修改时间)
-```
+
 
 SQL语句编写完毕之后，就可以在MySQL的命令行中执行SQL，然后也可以通过 desc 指令查询表结构
 
@@ -2568,17 +2569,13 @@ SQL语句编写完毕之后，就可以在MySQL的命令行中执行SQL，然后
 
 - 添加字段：alter table 表名 add 字段名 类型(长度) [comment 注释] [约束];
 
-  ```
   ALTER TABLE emp ADD nickname varchar(20) COMMENT '昵称';
-  ```
 
 - 修改字段类型：alter table 表名 modify 字段名 新数据类型(长度);
 
 - 修改字段名和字段类型：alter table 表名 change 旧字段名 新字段名 类型 (长度) [comment 注释] [约束];
 
-  ```
   ALTER TABLE emp CHANGE nickname username varchar(30) COMMENT '昵称';
-  ```
 
 - 删除字段：alter table 表名 drop  字段名;
 
@@ -2591,7 +2588,7 @@ SQL语句编写完毕之后，就可以在MySQL的命令行中执行SQL，然后
 -  删除指定表, 并重新创建表：TRUNCATE TABLE 表名; 
 - 在删除表时，表中的全部数据也会被删除。
 
-##### 3.1.3、多表设计
+##### 3.1.3、*多表设计
 
 ###### 3.1.3.1、概述
 
@@ -2617,9 +2614,9 @@ SQL语句编写完毕之后，就可以在MySQL的命令行中执行SQL，然后
 
 外键语法：
 
-```
--- 创建表时指定
+- 创建表时指定
 
+```
 create table 表名(
 
  字段名  数据类型,
@@ -2629,14 +2626,17 @@ create table 表名(
  [constraint]  [外键名称] foreign key (外键字段名)  references  主表 (字段名) 
 
 );
+```
 
--- 建完表后，添加外键
+- 建完表后，添加外键
 
+```
 alter table 表名 add constraint 外键名称 foreign key (外键字段名) references 主表(字段名);
 
 alter table tb_emp  
 add  constraint  fk_dept_id  foreign key (dept_id)  references  tb_dept(id);
 ```
+
 
 ![image-20231018102104570](https://gitee.com/coi4/test/raw/master/img/image-20231018102104570.png)
 
@@ -2648,7 +2648,7 @@ add  constraint  fk_dept_id  foreign key (dept_id)  references  tb_dept(id);
     - 影响增、删、改的效率（需要检查外键关系）。
     - 仅用于单节点数据库，不适用与分布式、集群场景。
     - 容易引发数据库的死锁问题，消耗性能。
-- 逻辑外键（推荐）
+- **逻辑外键**（推荐）：inner jion 、left jion
   - 在业务层逻辑中，解决外键关联。
   - 通过逻辑外键，就可以很方便的解决上述问题。
 
@@ -2676,10 +2676,9 @@ add  constraint  fk_dept_id  foreign key (dept_id)  references  tb_dept(id);
 
 > 参考资料中提供的 《[苍穹外卖](https://app.mockplus.cn/app/share-e928208474edd220b75e9faff1380e4ashare-VaH7dpoIaqRr/preview/BlJ_BHC42AEaa/tKNB7Tamh14B54?allowShare=1&cps=expand&ha=1)[_](https://app.mockplus.cn/app/share-e928208474edd220b75e9faff1380e4ashare-VaH7dpoIaqRr/preview/BlJ_BHC42AEaa/tKNB7Tamh14B54?allowShare=1&cps=expand&ha=1)[管理后台](https://app.mockplus.cn/app/share-e928208474edd220b75e9faff1380e4ashare-VaH7dpoIaqRr/preview/BlJ_BHC42AEaa/tKNB7Tamh14B54?allowShare=1&cps=expand&ha=1)》 页面原型，设计分类管理、菜品管理、套餐管理模块的表结构。
 
-```
 1.阅读页面原型及需求文档，分析各个模块涉及到的表结构，及表结构之间的关系。
 2.根据页面原型及需求文档，分析各个表结构中具体的字段及约束。
-```
+
 
 示例：
 
@@ -2702,7 +2701,7 @@ create table setmeal_dish
 ) comment '套餐菜品关联表';
 ```
 
-#### 3.2、数据库操作
+#### 3.2、*数据库操作
 
 ##### 3.2.1、操作-DML
 
@@ -3111,7 +3110,7 @@ select * from dish where price < (select avg(price) from dish);
 
 ###### 3.2.4.1、介绍&操作
 
-事务：是一组操作的集合，它是一个不可分割的工作单位。事务会把所有的操作作为一个整体一起向系统提交或撤销操作请求，即这些操作 要么同时成功，要么同时失败。
+事务：是一组**操作的集合**，它是一个不可分割的工作单位。事务会把所有的操作作为一个整体一起向系统提交或撤销操作请求，即这些操作 要么同时成功，要么同时失败。
 
 默认MySQL的事务是自动提交的，也就是说，当执行一条DML语句，MySQL会立即隐式的提交事务。
 
@@ -3124,7 +3123,7 @@ select * from dish where price < (select avg(price) from dish);
 > - 第1种情况：开启事务  =>  执行SQL语句   =>  成功  =>  提交事务
 > - 第2种情况：开启事务  =>  执行SQL语句   =>  失败  =>  回滚事务
 
-###### 3.2.4.2、四大特性（面试题）
+###### 3.2.4.2、*四大特性（面试题）
 
 原子性（Atomicity）：事务是不可分割的最小单元，要么全部成功，要么全部失败
 
@@ -3170,8 +3169,8 @@ B+Tree(多路平衡搜索树)：
 
 - 每一个节点，可以存储多个key（有n个key，就有n个指针）。
 - 节点分为：叶子节点、非叶子节点
-  - 叶子节点，就是最后一层子节点，所有的数据都存储在叶子节点上
-  - 非叶子节点，不是树结构最下面的节点，用于索引数据，存储的的是：key+指针
+  - 叶子节点，就是最后一层子节点，所有的**数据都存储在叶子节点上**
+  - 非叶子节点，不是树结构最下面的节点，用于索引数据，**存储的的是：key+指针**
 - 叶子节点形成了一颗双向链表，便于数据的排序及区间范围查询。
 - ![image-20231018115527350](https://gitee.com/coi4/test/raw/master/img/image-20231018115527350.png)
 
