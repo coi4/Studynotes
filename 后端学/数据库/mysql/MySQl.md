@@ -206,3 +206,142 @@ dept(id) on update set null on delete set null ;
 
 索引：创建、查询数据（使用索引）、查看、删除
 
+```
+public class sy_p3 {
+  public static void main(String[] args) throws Exception {
+    Scanner sc=new Scanner(System.in);
+    system s=new system();
+    while (true){
+      System.out.println("请输入服务序列号：");
+      System.out.println("1.添加学生信息");
+      System.out.println("2.查看成绩排序结果");
+      System.out.println("输入'999'退出系统");
+      int a=sc.nextInt();
+      sc.nextLine();
+      if(a==1){
+        System.out.println("请分别输入学生学号、姓名、英语成绩、数学成绩（回车两次录入结束）：");
+        while (true) {
+          String input = sc.nextLine();
+          if (input.trim().isEmpty()) {
+            break;
+          }
+          String[] parts = input.split("\\s+");
+          int num = Integer.parseInt(parts[0]);
+          String name = parts[1];
+          int English = Integer.parseInt(parts[2]);
+          int Math = Integer.parseInt(parts[3]);
+          s.insertData(num,name,English,Math);
+          s.count++;
+        }
+          }else if(a==2){
+        System.out.println("排序后的顺序为：");
+        s.sort();
+      }else if(a==999){
+        break;
+      }
+    }
+  }
+
+
+}
+class system{
+  SeqList L=new SeqList(10000);
+  int count=0;
+  public void insertData(int num,String name,int Englis,int Math) throws Exception {
+    student stu=new student(num,name,Englis,Math);
+    L.insert(count,new RecordNode(stu.totalScore,stu));
+  }
+  public void sort(){
+    RecordNode temp;
+    int i, j;
+    for (i = 1; i <count; i++) {
+      temp = L.r[i];
+      for (j = i - 1; j >= 0 && temp.key.compareTo(L.r[j].key) > 0; j--) {
+        L.r[j + 1] = L.r[j];
+      }
+      L.r[j + 1] = temp;
+    }
+    for (int k = 0; k < count; k++) {
+      System.out.println(L.r[k].element);
+    }
+  }
+}
+class student{
+  public int num;
+  public String name;
+  public int EnglisScore;
+  public int MathScore;
+  public int totalScore;
+
+  public student(int num, String name, int englisScore, int mathScore) {
+    this.num = num;
+    this.name = name;
+    EnglisScore = englisScore;
+    MathScore = mathScore;
+    totalScore=EnglisScore+MathScore;
+  }
+
+  @Override
+  public String toString() {
+    return "学号："+num+" "+"姓名："+name+" "+"英语："+EnglisScore+" "+"数学："+MathScore+" "+"总分："+totalScore;
+  }
+}
+```
+
+## 实验七 排序的操作试验
+
+> **实验日期**：2024.04.23      **实验地点**：科技楼4074      **仪器编号**：029   **学号**：170106   **姓名**：TOM   
+
+### 一、实验目的
+
+> (1)熟悉并掌握几种排序方法的基本思想及实现。 (2)掌握排序算法性能优劣比较的实现技术。 (3)了解排序的实际功能。
+
+------
+
+------
+
+### 二、实验内容
+
+**1-2实验随机序列，统一使用种子2024**
+
+> (1)编写程序,要求使用带监视哨的直接插人排序算法对20个0~ 100之间的随机整数进行排序(验证性内容)。 (2)编写程序,比较冒泡排序与快速排序两种排序算法的优劣(设计性内容)。 (3)编写程序，对学生成绩表计算总分并按总分从小到大排序并输出(应用设计性内容)。
+
+------
+
+------
+
+> 在Java中，要产生相同的随机数序列，你可以使用一个固定的种子来初始化Random类的实例。这会使得使用相同的种子值的不同Random实例产生相同的随机数序列。 下面是一个示例代码，演示如何使用固定种子值来产生相同的随机数序列：
+
+```
+import java.util.Random; public class ReproducibleRandomSequence {    public static void main(String[] args) {        // 使用固定的种子值        long seed = 12345L;         Random random1 = new Random(seed);        Random random2 = new Random(seed);         // 生成相同的随机数序列        for (int i = 0; i < 5; i++) {            System.out.println(random1.nextInt()); // 使用random1生成并打印随机数            System.out.println(random2.nextInt()); // 使用random2生成并打印相同的随机数        }    }}
+```
+
+在这个例子中，random1和random2都使用了相同的种子值12345L，因此它们生成的随机数序列是完全相同的。每次运行此代码，它都会打印出两个序列相同的随机数对。 提示：AI自动生成，仅供参考
+
+------
+
+------
+
+### 三、实验结果
+
+> 1.验证性内容。      **此处为实验截图**
+
+------
+
+------
+
+> 2.设计性内容。      **此处为实验截图**
+
+------
+
+------
+
+> 3.应用设计性内容。      **此处为实验截图**
+
+------
+
+------
+
+### 四、实验总结
+
+  遇到的问题及解决方法 && 相关知识点的学习心得和经验总结

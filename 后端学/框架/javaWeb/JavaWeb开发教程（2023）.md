@@ -58,7 +58,7 @@ alt+B：打开默认浏览器
 >   * height：图像的高度
 > * 标题标签：<h1-h6>
 > * 水平线标签：<hr>
-> * 没有语义的布局标签：<span>(一行可以显示多个(组合行内元素)，宽度和高度默认由内容撑开)
+> * 没有语义的布局标签：<span>(**一行可以显示多个**(组合行内元素)，宽度和高度默认由内容撑开)
 
 ###### 1.2.1.2、标题样式
 
@@ -142,7 +142,7 @@ css属性：
 
 ![img](https://gitee.com/coi4/test/raw/master/img/_-1759569315__25d7024d5d02f80281234f84065d6079_817726398_Screenshot_20231013_203921_0_xg_0.jpg)
 
-###### ？1.2.2.2、页面布局
+###### 1.2.2.2、页面布局
 
 使页面离边界有一定距离
 
@@ -252,12 +252,12 @@ submit/reset/button：定义提交按钮/重置按钮/可点击按钮+value=“�
 
 #### 2.1、引入方式
 
-> * 内部脚本：将JS代码定义在html页面的<script></script>中
->   * 建议：将<script></script>放在<body>的底部
+> * 内部脚本：将JS代码定义在html页面的`<script></script>`中
+>   * 建议：将`<script></script>`放在<body>的底部
 >
-> * 外部脚本：将JS代码定义在js文件中，通过<script></script>标签引入src
->   - 注意：通过<script>标签引入外部js文件时，标签不可以自闭合，必须是双标签
->   - js文件中不包含<script>标签
+> * 外部脚本：将JS代码定义在js文件中，通过`<script></script>`标签引入src
+>   - 注意：通过`<script>`标签引入外部js文件时，标签不可以自闭合，必须是双标签
+>   - js文件中不包含`<script>`标签
 
 #### 2.2、基础语法
 
@@ -278,10 +278,10 @@ console.log():写入浏览器控制台
 ##### 2.2.2、变量
 
 * 声明：
-  * var：声明变量，全局作用域/函数作用域，允许重复声明
-  *  let：声明变量，块级作用域，不允许重复声明
-  *  const：声明常量，一旦声明，常量的值不能改变
-* 弱类型语言，变量可以存放不同类型的值 ![image-20231013235056438](https://gitee.com/coi4/test/raw/master/img/image-20231013235056438.png)
+  * var：声明变量，全局作用域/函数作用域，**允许重复声明**
+  *  let：声明变量，块级作用域，**不允许重复声明**
+  *  const：声明常量，一旦声明，**常量**的值不能改变
+* 弱类型语言，变量**可以存放不同类型的值** ![image-20231013235056438](https://gitee.com/coi4/test/raw/master/img/image-20231013235056438.png)
 * 变量名规则：
   * 组成字符可以是任何字母、数字、下划线（_）或美元符号（$）
   * 数字不能开头
@@ -296,12 +296,16 @@ console.log():写入浏览器控制台
   * string：字符串，单双引皆可
   * boolean：布尔。true，false
   *  null：对象为空
-  *  undefined：当声明的变量未初始化时，该变量的默认值是 undefined
+  *  undefined：当声明的变量未初始化时，该变量的**默认值是 undefined**
 * 引用类型：
-* 运算符：与Java差不多，但js中== 会进行类型转换，=== 不会进行类型转换，类型不一致，返回false
+* 运算符：与Java差不多，但js中== 会进行类型转换，**=== 不会进行类型转换，类型不一致，返回false**
 * 类型转换：
-  * 字符串 转 数字：parselnt（“12A45”）//12
+  * ```
+    字符串 转 数字：parselnt（“12A45”）//12
+    ```
+  
   * 其他类型转为boolean
+  
   * 0，null，undefined，“”，NaN理解成false
 * 流程控制语句：if…else if …else…、switch、for 、while、do … while![image-20231013235837647](https://gitee.com/coi4/test/raw/master/img/image-20231013235837647.png)
 
@@ -338,8 +342,6 @@ console.log():写入浏览器控制台
     })
     ```
   
-    
-  
   * push（）：将新元素添加到数组的末尾，并返回新的长度
   
   * splice（）：从数组中删除元素
@@ -349,7 +351,6 @@ console.log():写入浏览器控制台
     //元素3和4被删除（从索引2的位置开始删，删两个）
     ```
   
-    
 
 **箭头函数**(ES6)**：**是用来简化函数定义语法的。具体形式为: (…) => { … } ，如果需要给箭头函数起名字： var xxx = (…) => { … }
 
@@ -362,7 +363,7 @@ console.log():写入浏览器控制台
   * charAt（）：返回在指定位置的字符
   * indexOf（）：检索字符串（返回索引）
   * trim（）：去除字符串两边的空格
-  * substring（）：提取字符串中两个指定的索引号之间的字符，含头不含尾
+  * substring（）：提取字符串中两个指定的索引号之间的字符，**含头不含尾**
 
 ##### 2.4.3、JSON
 
@@ -384,7 +385,7 @@ json，js对象标记法
 
 是通过 JavaScript 对象标记法书写的文本
 
-经常用来作为前后台交互的数据载体，xml文档的替代
+经常用来作为**前后台交互的数据载体**，xml文档的替代
 
 - json基础语法
   - 定义：![image-20231014004049944](https://gitee.com/coi4/test/raw/master/img/image-20231014004049944.png)
@@ -393,7 +394,7 @@ json，js对象标记法
 
 ##### 2.4.4、BOM
 
-浏览器对象模型，允许JavaScript与浏览器对话， JavaScript 将浏览器的各个组成部分封装为对象。要操作浏览器的部分功能，可通过操作BOM对象的相关属性或者函数来完成
+浏览器对象模型，允许JavaScript**与浏览器对话**， JavaScript 将浏览器的各个组成部分封装为对象。要操作浏览器的部分功能，可通过操作BOM对象的相关属性或者函数来完成
 
 - 对象：
 
@@ -471,13 +472,11 @@ check.checked=ture;
 }
 ```
 
-
-
 #### 2.5、事件监听
 
 事件：HTML事件是发生在HTML元素上的 “事情”,如按钮被点击、鼠标移动到元素上、按下键盘按键
 
-事件监听：JavaScript可以在事件被侦测到时 执行代码。
+事件监听：JavaScript可以在事件被侦测到时执行代码。
 
 ##### 2.5.1、事件绑定
 
@@ -509,16 +508,16 @@ check.checked=ture;
 
 ##### 2.5.2、常见事件
 
-| 事件名      | 说明                     |
-| ----------- | ------------------------ |
-| onclick     | 鼠标单击事件             |
-| onblur      | 元素失去焦点             |
-| onforce     | 元素获得焦点             |
-| onload      | 某个页面或图像被完成加载 |
-| onsubmit    | 当表单提交时触发该事件   |
-| onkeydown   | 某个键盘的键被按下       |
-| onmouseover | 鼠标被移到某元素之上     |
-| onmouseout  | 鼠标从某元素移开         |
+| 事件名      | 说明                         |
+| ----------- | ---------------------------- |
+| onclick     | 鼠标**单击**事件             |
+| onblur      | 元素**失去焦点**             |
+| onforce     | 元素**获得焦点**             |
+| onload      | 某个页面或图像被**完成加载** |
+| onsubmit    | 当表单**提交时触发**该事件   |
+| onkeydown   | 某个键盘的**键被按下**       |
+| onmouseover | **鼠标被移**到某元素之上     |
+| onmouseout  | 鼠标从某元素**移开**         |
 
 ##### 2.5.3、案例
 
@@ -555,11 +554,9 @@ img.arc="";
  }
 ```
 
-
-
 ### 3、Vue
 
-- Vue 是一套前端框架，**免除原生JavaScript中的DOM操作**，简化书写。
+- Vue 是一套前端框架，**免除原生JavaScript中的DOM操作**（标签对象操作），简化书写。
 - 基于MVVM(Model-View-ViewModel)思想，**实现数据的双向绑定，将编程的关注点放在数据上**。
 - 框架：是一个半成品软件，是一套可重用的、通用的、软件基础代码模型。基于框架进行开发，更加快捷、更加高效。
 - Model：数据模型，特指前端中通过请求从后台获取的数据
@@ -592,7 +589,7 @@ img.arc="";
 
 ![image-20231014085532805](https://gitee.com/coi4/test/raw/master/img/image-20231014085532805.png)
 
-通过v-bind或者v-model绑定的变量，必须在数据模型中声明。
+通过**v-bind或者v-model**绑定的变量，必须在数据模型中声明。
 
 ![image-20231014085627762](https://gitee.com/coi4/test/raw/master/img/image-20231014085627762.png)
 
@@ -626,8 +623,6 @@ mounted(){
 }
 ```
 
-
-
 ### 4、vue-Element
 
 #### 4.1、Ajax
@@ -639,7 +634,7 @@ mounted(){
 作用：
 
 - 数据交换：通过Ajax可以给服务器发送请求，并获取服务器响应的数据。
-- 异步交互：可以在不重新加载整个页面的情况下，与服务器交换数据并更新部分网页的技术，如：搜索联想、用户名是否可用的校验等等。
+- 异步交互：可以在**不重新加载整个页面的情况下，与服务器交换数据**并更新部分网页的技术，如：搜索联想、用户名是否可用的校验等等。
 
 ##### 4.1.2、Axios
 
@@ -716,7 +711,7 @@ new vue{
 > 4. 测试：前后台开发完了，各自按照接口文档进行测试
 > 5. 前后段联调测试：前段工程请求后端工程，测试功能
 
-YApi
+##### YApi
 
 * 用来撰写接口文档的平台
 *  http://yapi.smart-xwork.cn/
@@ -771,13 +766,13 @@ YApi对于接口的配置步骤：
 1. 安装NodeJS
 2. 安装vue-cli
 
-##### 4.3.2、Vue项目简介
+##### *4.3.2、Vue项目简介
 
 1. Vue项目创建
 
-   - 命令行：![image-20231014175441977](https://gitee.com/coi4/test/raw/master/img/image-20231014175441977.png)
+   - 命令行方式：![image-20231014175441977](https://gitee.com/coi4/test/raw/master/img/image-20231014175441977.png)
 
-   - 图形化界面：通过命令先进入到图形化界面，然后再进行vue工程的创建![image-20231014175455923](https://gitee.com/coi4/test/raw/master/img/image-20231014175455923.png)
+   - 图形化界面方式：创建空文件夹双击进入地址目录，通过命令先进入到图形化界面![image-20231014175455923](https://gitee.com/coi4/test/raw/master/img/image-20231014175455923.png)，然后再进行vue工程的创建
 
      ![img](https://gitee.com/coi4/test/raw/master/img/059ED6DA44D41237AC4538C1257E0358.png)
 
@@ -788,6 +783,8 @@ YApi对于接口的配置步骤：
      ![img](https://gitee.com/coi4/test/raw/master/img/04EB6FD6E9D54021EAF5064B2B09F802.png)
 
      ![img](https://gitee.com/coi4/test/raw/master/img/12A197476C396E6DA131F52BFDCDE0C7.png)
+     
+     最后用vscode打开文件夹得到基本目录框架
 
 2. 目录构建
 
@@ -1147,8 +1144,8 @@ Element：是饿了么团队研发的，一套为开发者、设计师和产品�
 * 介绍： Vue Router 是 Vue 的官方路由插件。
 * 组成：
   * VueRouter：路由器类，根据路由请求在路由视图中动态渲染选中的组件
-  * <router-link>：请求链接组件，浏览器会解析成<a>
-  * <router-view>：动态视图组件，用来渲染展示与路由路径对应的组件
+  * `<router-link>`：请求链接组件，浏览器会解析成`<a>`
+  * `<router-view>`：动态视图组件，用来渲染展示与路由路径对应的组件
 
 1. 安装（创建Vue项目时已选择）![image-20231014183150672](https://gitee.com/coi4/test/raw/master/img/image-20231014183150672.png)
 
@@ -1239,6 +1236,13 @@ Element：是饿了么团队研发的，一套为开发者、设计师和产品�
 
 双击 nginx.exe 文件即可，Nginx服务器默认占用 80 端口号，如果80端口号被占用，可以在nginx.conf中修改端口号。(netstat –ano | findStr 80)
 
+### #前端总结
+
+工具：
+
+- vscode（编译环境）
+- Node.js+vue-cli（vue项目创建——两种方式4.3.2）
+
 ## 二、后端Web开发
 
 ### 1、maven
@@ -1263,7 +1267,7 @@ Maven模型：
 - 依赖管理模型（Dependency)
 - 构建生命周期/阶段
 
-需要jar包时，直接把jar包复制到项目下的lib目录
+需要jar包时，直接把jar包复制到项目下的**lib目录**
 
 坐标：由<groupld>、<artifactld>、<version>组成，**定位用**
 
@@ -1314,9 +1318,9 @@ Maven模型：
 
    ![img](https://gitee.com/coi4/test/raw/master/img/DDF418E2A46A4884711D9D54608A597F.png)
 
-* bin目录 ： 存放的是可执行命令。（mvn 命令重点关注）
-* conf目录 ：存放Maven的配置文件。（settings.xml配置文件后期需要修改）
-* lib目录 ：存放Maven依赖的jar包。（Maven也是使用java开发的，所以它也依赖其他的jar包）
+* bin目录 ： 存放的是**可执行命令**。（mvn 命令重点关注）
+* conf目录 ：存放Maven的**配置文件**。（settings.xml配置文件后期需要修改）
+* lib目录 ：存放Maven依赖的**jar包**。（Maven也是使用java开发的，所以它也依赖其他的jar包）
 
 
 
@@ -1368,14 +1372,14 @@ Maven模型：
 > Maven项目的目录结构:
 >
 > maven-project01
-> 	|---  src  (源代码目录和测试代码目录)
+> 	|---  src  (源**代码**目录和测试代码目录)
 > 		    |---  main (源代码目录)
 > 			           |--- java (源代码java文件目录)
 > 			           |--- resources (源代码配置文件目录)
 > 		    |---  test (测试代码目录)
 > 			           |--- java (测试代码java目录)
 > 			           |--- resources (测试代码配置文件目录)
-> 	|--- target (编译、打包生成文件存放目录)
+> 	|--- target (编译、**打包**生成文件存放目录)
 
 **POM用来描述当前的maven项目**；使用pom.xml实现
 
@@ -1432,7 +1436,7 @@ Maven模型：
 - **如果不知道依赖的坐标信息**，可以到https://mvnrepository.com/中搜索。
 
 1. 利用中央仓库搜索依赖坐标
-2. **利用IDEA：alt+enter**
+2. **利用IDEA：alt+insert**（惠普为alt+fn+E或点亮fn后fn+alt+insert）
 3. 熟练上手maven后，快速导入依赖
 
 ##### 1.3.2、依赖传递
@@ -1506,7 +1510,7 @@ Maven中有3套相互独立的生命周期：
 
 操作步骤：
 
-1. 定义批处理文件del_lastUpdated.bat  (直接创建一个文本文件，命名为del_lastUpdated，后缀名直接改为bat即可 )
+1. 定义批处理文件del_lastUpdated.bat  (任意位置直接创建一个文本文件，命名为del_lastUpdated，后缀名直接改为bat即可 )
 
 2. 在上面的bat文件上**右键---》编辑** 。修改文件：
 
@@ -1519,8 +1523,6 @@ Maven中有3套相互独立的生命周期：
    rem 搜索完毕
    pause
    ```
-
-   
 
 3. 修改完毕后，双击运行即可删除maven仓库中的残留文件。
 
@@ -4293,3 +4295,8 @@ maven中可以通过 <modules> 设置当前聚合工程所包含的子模块名�
 1. 设置私服的访问用户名/密码（settings.xml中的servers中配置）![image-20231021093628044](https://gitee.com/coi4/test/raw/master/img/image-20231021093628044.png)
 2. IDEA的maven工程的pom文件中配置上传（发布）地址![image-20231021093741522](https://gitee.com/coi4/test/raw/master/img/image-20231021093741522.png)
 3. 设置私服依赖下载的仓库组地址（settings.xml中的mirrors、profiles中配置）
+
+```
+
+```
+
